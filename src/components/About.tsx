@@ -1,13 +1,38 @@
 
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Users, Lightbulb, Award } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export const About = () => {
+  const [aboutContent, setAboutContent] = useState({
+    title: "About CSED",
+    description: "The Center for Skills and Entrepreneurship Development is dedicated to nurturing the next generation of innovators and entrepreneurs through comprehensive programs, mentorship, and hands-on learning experiences.",
+    mission: "Fostering entrepreneurial mindset and practical skills among students to create future leaders.",
+    vision: "To be the leading center for innovation and entrepreneurship development in the region."
+  });
+
+  useEffect(() => {
+    fetchAboutContent();
+  }, []);
+
+  const fetchAboutContent = async () => {
+    const { data, error } = await supabase
+      .from('about_content')
+      .select('*')
+      .limit(1)
+      .single();
+
+    if (data) {
+      setAboutContent(data);
+    }
+  };
+
   const features = [
     {
       icon: Target,
       title: "Mission Driven",
-      description: "Fostering entrepreneurial mindset and practical skills among students to create future leaders."
+      description: aboutContent.mission || "Fostering entrepreneurial mindset and practical skills among students to create future leaders."
     },
     {
       icon: Users,
@@ -32,13 +57,11 @@ export const About = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-              About CSED
+              {aboutContent.title}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            The Center for Skills and Entrepreneurship Development is dedicated to nurturing 
-            the next generation of innovators and entrepreneurs through comprehensive programs, 
-            mentorship, and hands-on learning experiences.
+            {aboutContent.description}
           </p>
         </div>
 
