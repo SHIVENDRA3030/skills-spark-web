@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Programs from "./pages/Programs";
+import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/programs" element={<Programs />} />
+            <Route path="/team" element={<Team />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
