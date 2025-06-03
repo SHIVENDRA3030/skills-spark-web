@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Terminal, Cpu } from "lucide-react";
+import { ArrowRight, Sparkles, Star, Zap } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 
@@ -32,120 +32,92 @@ export const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
-      {/* Advanced Tech Background */}
-      <div className="matrix-bg">
-        <div className="circuit-overlay"></div>
-      </div>
-      
-      {/* Floating geometric shapes with circuit patterns */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-96 h-96 opacity-20">
-          <div className="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full blur-3xl animate-particle-float"></div>
-          <div className="absolute inset-0 border border-cyan-400 rounded-full animate-hexagon-spin"></div>
+      {/* Enhanced animated background elements */}
+      <div className="absolute inset-0 parallax-bg">
+        {/* Floating geometric shapes */}
+        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-br from-pink-600 to-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-float animation-delay-1000"></div>
+        <div className="absolute bottom-40 left-1/2 w-80 h-80 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-35 animate-float animation-delay-2000"></div>
+        
+        {/* Floating icons */}
+        <div className="absolute top-32 right-1/4 animate-float animation-delay-500">
+          <Star className="w-8 h-8 text-purple-400 opacity-60 animate-pulse-slow" />
         </div>
-        <div className="absolute top-40 right-20 w-80 h-80 opacity-15">
-          <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-600 rounded-full blur-2xl animate-particle-float animation-delay-1000"></div>
+        <div className="absolute bottom-32 left-1/4 animate-float animation-delay-1500">
+          <Zap className="w-12 h-12 text-pink-400 opacity-50 animate-glow" />
         </div>
-        <div className="absolute bottom-40 left-1/2 w-72 h-72 opacity-25">
-          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full blur-xl animate-particle-float animation-delay-2000"></div>
-        </div>
-
-        {/* Circuit board patterns */}
-        <div className="absolute top-32 right-1/4 w-32 h-32 border border-cyan-400 opacity-30 animate-circuit-flow">
-          <div className="absolute inset-4 border border-cyan-400"></div>
-          <div className="absolute top-1/2 left-0 w-full h-px bg-cyan-400 animate-energy-flow"></div>
-        </div>
-        <div className="absolute bottom-32 left-1/4 w-24 h-24 border border-blue-400 opacity-20 animate-circuit-flow animation-delay-1500">
-          <div className="absolute inset-2 border border-blue-400"></div>
+        <div className="absolute top-1/2 right-16 animate-float animation-delay-700">
+          <Sparkles className="w-6 h-6 text-orange-400 opacity-70 animate-rotate-slow" />
         </div>
         
-        {/* HUD Elements */}
-        <div className="absolute top-1/2 right-16 hud-element p-4 rounded opacity-30">
-          <Cpu className="w-8 h-8 text-cyan-400 animate-neon-pulse" />
-        </div>
-        <div className="absolute top-1/4 left-16 hud-element p-3 rounded opacity-25">
-          <Terminal className="w-6 h-6 text-blue-400 animate-neon-pulse" />
-        </div>
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px] animate-pulse-slow"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto text-center relative z-20">
-        {/* Cyber Header Badge */}
-        <div className="mb-8 animate-cyber-zoom">
-          <div className="inline-flex items-center px-8 py-4 rounded-lg holo-card border border-cyan-400 mb-8 hover:scale-105 transition-all duration-300">
-            <Terminal className="w-6 h-6 text-cyan-400 mr-4 animate-neon-pulse" />
-            <span className="cyber-text text-lg font-bold tracking-wider">
+      <div className="max-w-7xl mx-auto text-center relative z-10">
+        <div className="mb-8 animate-zoom-in">
+          <div className="inline-flex items-center px-6 py-3 rounded-full glass-effect border border-purple-500/30 mb-8 animate-glow hover-lift">
+            <Sparkles className="w-5 h-5 text-purple-400 mr-3 animate-rotate-slow" />
+            <span className="text-purple-300 text-sm font-medium tracking-wide">
               {heroContent.subtitle}
             </span>
-            <div className="ml-4 w-3 h-3 bg-cyan-400 rounded-full animate-neon-pulse"></div>
+            <div className="ml-3 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           </div>
           
-          {/* Glitch Title */}
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight">
-            <div className="animate-decode-text">
-              <span className="glitch-text cyber-text block mb-4" data-text={heroContent.title.split(' & ')[0]}>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+            <div className="animate-slide-up">
+              <span className="text-gradient block mb-2">
                 {heroContent.title.split(' & ')[0]}
               </span>
             </div>
-            <div className="animate-decode-text animation-delay-500">
-              <span className="glitch-text block" data-text={heroContent.title.includes(' & ') ? `& ${heroContent.title.split(' & ')[1]}` : ''} style={{
-                fontFamily: 'Orbitron, monospace',
-                background: 'linear-gradient(45deg, #00ffff, #0080ff, #ff0080, #00ffff)',
-                backgroundSize: '400% 400%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                animation: 'cyberGradient 4s ease-in-out infinite'
-              }}>
+            <div className="animate-slide-up animation-delay-300">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent animate-gradient">
                 {heroContent.title.includes(' & ') ? `& ${heroContent.title.split(' & ')[1]}` : ''}
               </span>
             </div>
           </h1>
           
-          {/* Terminal-style description */}
-          <div className="animate-terminal-type animation-delay-1000 overflow-hidden whitespace-nowrap mb-8">
-            <p className="text-xl md:text-2xl text-cyan-300 font-mono border-r-2 border-cyan-400 animate-neon-pulse">
-              {"> "}{heroContent.description}
+          <div className="animate-fade-in animation-delay-500">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+              {heroContent.description}
             </p>
           </div>
         </div>
 
-        {/* Cyber Buttons */}
-        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center animate-cyber-zoom animation-delay-1500">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in animation-delay-700">
           <Link to="/auth">
-            <Button className="cyber-button px-12 py-6 text-lg rounded-lg transform hover:scale-110 transition-all duration-300">
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-10 py-4 text-lg group transform hover:scale-110 transition-all duration-300 animate-glow hover-lift shadow-2xl">
               {heroContent.cta_primary_text}
-              <ArrowRight className="ml-4 h-6 w-6 animate-energy-flow" />
+              <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
           </Link>
           
           <Link to="/events">
-            <Button className="cyber-button bg-transparent px-12 py-6 text-lg rounded-lg transform hover:scale-110 transition-all duration-300">
+            <Button variant="outline" size="lg" className="glass-effect border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-10 py-4 text-lg transform hover:scale-110 transition-all duration-300 hover-lift shadow-2xl">
               {heroContent.cta_secondary_text}
-              <Zap className="ml-4 h-6 w-6 animate-neon-pulse" />
             </Button>
           </Link>
         </div>
 
-        {/* Enhanced HUD Stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 animate-cyber-zoom animation-delay-2000">
+        {/* Enhanced stats section */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in animation-delay-1000">
           {[
-            { number: "500+", label: "Students", icon: "👥" },
-            { number: "50+", label: "Events", icon: "🚀" },
-            { number: "25+", label: "Startups", icon: "💡" },
-            { number: "100%", label: "Success", icon: "⚡" }
+            { number: "500+", label: "Students" },
+            { number: "50+", label: "Events" },
+            { number: "25+", label: "Startups" },
+            { number: "100%", label: "Success" }
           ].map((stat, index) => (
-            <div key={index} className={`holo-card p-6 rounded-lg animate-hologram animation-delay-${2200 + index * 200}`}>
-              <div className="text-4xl mb-2">{stat.icon}</div>
-              <div className="cyber-text text-3xl md:text-4xl font-bold mb-2">{stat.number}</div>
-              <div className="text-cyan-300 text-sm uppercase tracking-wider font-mono">{stat.label}</div>
+            <div key={index} className={`text-center animate-zoom-in animation-delay-${1200 + index * 200}`}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{stat.number}</div>
+              <div className="text-gray-400 text-sm uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Cyber scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-8 h-16 border-2 border-cyan-400 rounded-full flex justify-center animate-neon-pulse">
-            <div className="w-2 h-6 bg-gradient-to-b from-cyan-400 to-blue-400 rounded-full mt-2 animate-cyber-scan"></div>
+        {/* Floating action indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-8 h-12 border-2 border-purple-400 rounded-full flex justify-center bg-gradient-to-b from-transparent to-purple-600/20">
+            <div className="w-2 h-4 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>
