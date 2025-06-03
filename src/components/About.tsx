@@ -83,7 +83,7 @@ export const About = () => {
           </h2>
           <div className="holo-card p-8 rounded-lg max-w-4xl mx-auto animate-hologram animation-delay-500">
             <p className="text-xl md:text-2xl text-cyan-300 leading-relaxed font-mono">
-              > {aboutContent.description}
+              {"> "}{aboutContent.description}
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export const About = () => {
               </h3>
             </div>
             <p className="text-cyan-300 text-lg leading-relaxed font-mono">
-              > {aboutContent.mission}
+              {"> "}{aboutContent.mission}
             </p>
           </div>
           
@@ -138,7 +138,7 @@ export const About = () => {
               </h3>
             </div>
             <p className="text-cyan-300 text-lg leading-relaxed font-mono">
-              > {aboutContent.vision}
+              {"> "}{aboutContent.vision}
             </p>
           </div>
         </div>

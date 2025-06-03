@@ -104,7 +104,7 @@ export const Hero = () => {
           {/* Terminal-style description */}
           <div className="animate-terminal-type animation-delay-1000 overflow-hidden whitespace-nowrap mb-8">
             <p className="text-xl md:text-2xl text-cyan-300 font-mono border-r-2 border-cyan-400 animate-neon-pulse">
-              > {heroContent.description}
+              {"> "}{heroContent.description}
             </p>
           </div>
         </div>
