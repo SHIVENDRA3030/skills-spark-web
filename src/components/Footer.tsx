@@ -46,8 +46,8 @@ export const Footer = () => {
         company_name: data.company_name || footerContent.company_name,
         description: data.description || footerContent.description,
         copyright_text: data.copyright_text || footerContent.copyright_text,
-        quick_links: data.quick_links || footerContent.quick_links,
-        social_links: data.social_links || footerContent.social_links
+        quick_links: Array.isArray(data.quick_links) ? data.quick_links as Array<{ label: string; href: string }> : footerContent.quick_links,
+        social_links: (typeof data.social_links === 'object' && data.social_links !== null) ? data.social_links as FooterContent['social_links'] : footerContent.social_links
       });
     }
   };

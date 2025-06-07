@@ -13,7 +13,7 @@ interface NavbarContent {
   id: string;
   logo_text: string;
   logo_url: string;
-  navigation_items: any[];
+  navigation_items: Array<{ label: string; href: string }>;
   cta_text: string;
   cta_link: string;
 }
@@ -40,11 +40,19 @@ export const AdminNavbarSection = () => {
       .single();
 
     if (data) {
-      setNavbarContent(data);
+      const navigationItems = Array.isArray(data.navigation_items) 
+        ? data.navigation_items as Array<{ label: string; href: string }> 
+        : [];
+        
+      setNavbarContent({
+        ...data,
+        navigation_items: navigationItems
+      } as NavbarContent);
+      
       setFormData({
         logo_text: data.logo_text || "",
         logo_url: data.logo_url || "",
-        navigation_items: data.navigation_items?.map((item: any) => `${item.label}:${item.href}`).join('\n') || "",
+        navigation_items: navigationItems.map((item: any) => `${item.label}:${item.href}`).join('\n') || "",
         cta_text: data.cta_text || "",
         cta_link: data.cta_link || ""
       });

@@ -15,7 +15,12 @@ interface ContactInfo {
   phone: string;
   address: string;
   office_hours: string;
-  social_links: any;
+  social_links: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
 }
 
 export const AdminContactSection = () => {
@@ -43,16 +48,24 @@ export const AdminContactSection = () => {
       .single();
 
     if (data) {
-      setContactInfo(data);
+      const socialLinks = (typeof data.social_links === 'object' && data.social_links !== null) 
+        ? data.social_links as ContactInfo['social_links'] 
+        : {};
+        
+      setContactInfo({
+        ...data,
+        social_links: socialLinks
+      } as ContactInfo);
+      
       setFormData({
         email: data.email || "",
         phone: data.phone || "",
         address: data.address || "",
         office_hours: data.office_hours || "",
-        facebook: data.social_links?.facebook || "",
-        twitter: data.social_links?.twitter || "",
-        linkedin: data.social_links?.linkedin || "",
-        instagram: data.social_links?.instagram || ""
+        facebook: socialLinks.facebook || "",
+        twitter: socialLinks.twitter || "",
+        linkedin: socialLinks.linkedin || "",
+        instagram: socialLinks.instagram || ""
       });
     }
   };

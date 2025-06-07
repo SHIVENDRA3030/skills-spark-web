@@ -53,7 +53,7 @@ export const Navbar = () => {
       setNavbarContent({
         logo_text: data.logo_text || "CSED",
         logo_url: data.logo_url || "",
-        navigation_items: data.navigation_items || navbarContent.navigation_items,
+        navigation_items: Array.isArray(data.navigation_items) ? data.navigation_items as NavItem[] : navbarContent.navigation_items,
         cta_text: data.cta_text || "Join Us",
         cta_link: data.cta_link || "/auth"
       });

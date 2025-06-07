@@ -53,7 +53,14 @@ export const AdminProgramsSection = () => {
       return;
     }
 
-    setPrograms(data || []);
+    if (data) {
+      const typedPrograms = data.map(program => ({
+        ...program,
+        features: Array.isArray(program.features) ? program.features as string[] : []
+      })) as Program[];
+      
+      setPrograms(typedPrograms);
+    }
   };
 
   const handleSave = async () => {

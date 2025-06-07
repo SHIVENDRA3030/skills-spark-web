@@ -14,8 +14,13 @@ interface FooterContent {
   company_name: string;
   description: string;
   copyright_text: string;
-  quick_links: any[];
-  social_links: any;
+  quick_links: Array<{ label: string; href: string }>;
+  social_links: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
 }
 
 export const AdminFooterSection = () => {
@@ -43,16 +48,26 @@ export const AdminFooterSection = () => {
       .single();
 
     if (data) {
-      setFooterContent(data);
+      const quickLinks = Array.isArray(data.quick_links) ? data.quick_links as Array<{ label: string; href: string }> : [];
+      const socialLinks = (typeof data.social_links === 'object' && data.social_links !== null) 
+        ? data.social_links as FooterContent['social_links'] 
+        : {};
+        
+      setFooterContent({
+        ...data,
+        quick_links: quickLinks,
+        social_links: socialLinks
+      } as FooterContent);
+      
       setFormData({
         company_name: data.company_name || "",
         description: data.description || "",
         copyright_text: data.copyright_text || "",
-        quick_links: data.quick_links?.map((link: any) => `${link.label}:${link.href}`).join('\n') || "",
-        facebook: data.social_links?.facebook || "",
-        twitter: data.social_links?.twitter || "",
-        linkedin: data.social_links?.linkedin || "",
-        instagram: data.social_links?.instagram || ""
+        quick_links: quickLinks.map((link: any) => `${link.label}:${link.href}`).join('\n') || "",
+        facebook: socialLinks.facebook || "",
+        twitter: socialLinks.twitter || "",
+        linkedin: socialLinks.linkedin || "",
+        instagram: socialLinks.instagram || ""
       });
     }
   };
