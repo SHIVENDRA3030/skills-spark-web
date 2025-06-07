@@ -63,6 +63,39 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_info: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          id: string
+          office_hours: string | null
+          phone: string | null
+          social_links: Json | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          office_hours?: string | null
+          phone?: string | null
+          social_links?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          office_hours?: string | null
+          phone?: string | null
+          social_links?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -104,6 +137,39 @@ export type Database = {
           status?: string | null
           time?: string | null
           title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      footer_content: {
+        Row: {
+          company_name: string | null
+          copyright_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          quick_links: Json | null
+          social_links: Json | null
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          copyright_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          quick_links?: Json | null
+          social_links?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          copyright_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          quick_links?: Json | null
+          social_links?: Json | null
           updated_at?: string
         }
         Relationships: []
@@ -172,6 +238,81 @@ export type Database = {
           description?: string | null
           id?: string
           subtitle?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      navbar_content: {
+        Row: {
+          created_at: string
+          cta_link: string | null
+          cta_text: string | null
+          id: string
+          logo_text: string | null
+          logo_url: string | null
+          navigation_items: Json | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta_link?: string | null
+          cta_text?: string | null
+          id?: string
+          logo_text?: string | null
+          logo_url?: string | null
+          navigation_items?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta_link?: string | null
+          cta_text?: string | null
+          id?: string
+          logo_text?: string | null
+          logo_url?: string | null
+          navigation_items?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      programs: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration: string | null
+          features: Json | null
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          level: string | null
+          order_index: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          level?: string | null
+          order_index?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          level?: string | null
+          order_index?: number | null
           title?: string
           updated_at?: string
         }

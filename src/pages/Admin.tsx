@@ -9,6 +9,10 @@ import { AdminHeroSection } from "@/components/admin/AdminHeroSection";
 import { AdminAboutSection } from "@/components/admin/AdminAboutSection";
 import { AdminEventsSection } from "@/components/admin/AdminEventsSection";
 import { AdminTeamSection } from "@/components/admin/AdminTeamSection";
+import { AdminProgramsSection } from "@/components/admin/AdminProgramsSection";
+import { AdminContactSection } from "@/components/admin/AdminContactSection";
+import { AdminFooterSection } from "@/components/admin/AdminFooterSection";
+import { AdminNavbarSection } from "@/components/admin/AdminNavbarSection";
 import { LogOut, Home } from "lucide-react";
 
 const Admin = () => {
@@ -64,11 +68,15 @@ const Admin = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="hero" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-4 bg-slate-700">
-                <TabsTrigger value="hero" className="text-white">Hero Section</TabsTrigger>
-                <TabsTrigger value="about" className="text-white">About Section</TabsTrigger>
-                <TabsTrigger value="events" className="text-white">Events</TabsTrigger>
-                <TabsTrigger value="team" className="text-white">Team</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 bg-slate-700 h-auto">
+                <TabsTrigger value="hero" className="text-white text-xs">Hero</TabsTrigger>
+                <TabsTrigger value="about" className="text-white text-xs">About</TabsTrigger>
+                <TabsTrigger value="programs" className="text-white text-xs">Programs</TabsTrigger>
+                <TabsTrigger value="events" className="text-white text-xs">Events</TabsTrigger>
+                <TabsTrigger value="team" className="text-white text-xs">Team</TabsTrigger>
+                <TabsTrigger value="navbar" className="text-white text-xs">Navigation</TabsTrigger>
+                <TabsTrigger value="contact" className="text-white text-xs">Contact</TabsTrigger>
+                <TabsTrigger value="footer" className="text-white text-xs">Footer</TabsTrigger>
               </TabsList>
               
               <TabsContent value="hero">
@@ -79,12 +87,28 @@ const Admin = () => {
                 <AdminAboutSection />
               </TabsContent>
               
+              <TabsContent value="programs">
+                <AdminProgramsSection />
+              </TabsContent>
+              
               <TabsContent value="events">
                 <AdminEventsSection />
               </TabsContent>
               
               <TabsContent value="team">
                 <AdminTeamSection />
+              </TabsContent>
+
+              <TabsContent value="navbar">
+                <AdminNavbarSection />
+              </TabsContent>
+
+              <TabsContent value="contact">
+                <AdminContactSection />
+              </TabsContent>
+
+              <TabsContent value="footer">
+                <AdminFooterSection />
               </TabsContent>
             </Tabs>
           </CardContent>
