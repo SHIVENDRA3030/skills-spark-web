@@ -215,6 +215,14 @@ export type Database = {
           cta_secondary_text: string | null
           description: string | null
           id: string
+          stats_programs_count: string | null
+          stats_programs_label: string | null
+          stats_startups_count: string | null
+          stats_startups_label: string | null
+          stats_students_count: string | null
+          stats_students_label: string | null
+          stats_success_count: string | null
+          stats_success_label: string | null
           subtitle: string
           title: string
           updated_at: string
@@ -226,6 +234,14 @@ export type Database = {
           cta_secondary_text?: string | null
           description?: string | null
           id?: string
+          stats_programs_count?: string | null
+          stats_programs_label?: string | null
+          stats_startups_count?: string | null
+          stats_startups_label?: string | null
+          stats_students_count?: string | null
+          stats_students_label?: string | null
+          stats_success_count?: string | null
+          stats_success_label?: string | null
           subtitle: string
           title: string
           updated_at?: string
@@ -237,6 +253,14 @@ export type Database = {
           cta_secondary_text?: string | null
           description?: string | null
           id?: string
+          stats_programs_count?: string | null
+          stats_programs_label?: string | null
+          stats_startups_count?: string | null
+          stats_startups_label?: string | null
+          stats_students_count?: string | null
+          stats_students_label?: string | null
+          stats_success_count?: string | null
+          stats_success_label?: string | null
           subtitle?: string
           title?: string
           updated_at?: string

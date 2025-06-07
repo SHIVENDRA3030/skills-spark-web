@@ -11,7 +11,15 @@ export const Hero = () => {
     subtitle: "Igniting Innovation & Entrepreneurship",
     description: "Empowering students to transform ideas into reality through innovation, skill development, and entrepreneurial excellence.",
     cta_primary_text: "Join Our Community",
-    cta_secondary_text: "Explore Events"
+    cta_secondary_text: "Explore Events",
+    stats_students_count: "500+",
+    stats_students_label: "Students Enrolled",
+    stats_programs_count: "50+",
+    stats_programs_label: "Programs Completed",
+    stats_startups_count: "25+",
+    stats_startups_label: "Successful Startups",
+    stats_success_count: "100%",
+    stats_success_label: "Success Rate"
   });
 
   useEffect(() => {
@@ -29,6 +37,25 @@ export const Hero = () => {
       setHeroContent(data);
     }
   };
+
+  const stats = [
+    { 
+      number: heroContent.stats_students_count || "500+", 
+      label: heroContent.stats_students_label || "Students Enrolled" 
+    },
+    { 
+      number: heroContent.stats_programs_count || "50+", 
+      label: heroContent.stats_programs_label || "Programs Completed" 
+    },
+    { 
+      number: heroContent.stats_startups_count || "25+", 
+      label: heroContent.stats_startups_label || "Successful Startups" 
+    },
+    { 
+      number: heroContent.stats_success_count || "100%", 
+      label: heroContent.stats_success_label || "Success Rate" 
+    }
+  ];
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -88,12 +115,7 @@ export const Hero = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {[
-            { number: "500+", label: "Students Enrolled" },
-            { number: "50+", label: "Programs Completed" },
-            { number: "25+", label: "Successful Startups" },
-            { number: "100%", label: "Success Rate" }
-          ].map((stat, index) => (
+          {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
                 {stat.number}
