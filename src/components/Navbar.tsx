@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NavItem {
   label: string;
@@ -73,7 +73,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav className="fixed top-0 w-full z-50 bg-white/10 dark:bg-slate-900/10 backdrop-blur-md border-b border-gray-200/20 dark:border-slate-700/20 shadow-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -81,7 +81,7 @@ export const Navbar = () => {
               {navbarContent.logo_url ? (
                 <img src={navbarContent.logo_url} alt={navbarContent.logo_text} className="h-8 w-auto" />
               ) : (
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   {navbarContent.logo_text}
                 </span>
               )}
@@ -96,7 +96,7 @@ export const Navbar = () => {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-blue-50"
+                    className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-blue-50/10 dark:hover:bg-blue-900/10"
                   >
                     {item.label}
                   </a>
@@ -104,7 +104,7 @@ export const Navbar = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-blue-50"
+                    className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-blue-50/10 dark:hover:bg-blue-900/10"
                   >
                     {item.label}
                   </Link>
@@ -113,13 +113,14 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             {user ? (
               <div className="flex items-center space-x-2">
                 {isAdmin && (
                   <Link to="/admin">
-                    <Button variant="ghost" size="sm" className="text-gray-700 hover:text-blue-600">
+                    <Button variant="ghost" size="sm" className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400">
                       <Settings className="w-4 h-4 mr-2" />
                       Admin
                     </Button>
@@ -129,7 +130,7 @@ export const Navbar = () => {
                   onClick={signOut}
                   variant="outline"
                   size="sm"
-                  className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800"
                 >
                   Sign Out
                 </Button>
@@ -138,7 +139,7 @@ export const Navbar = () => {
               <Link to={navbarContent.cta_link}>
                 <Button
                   size="sm"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   {navbarContent.cta_text}
                 </Button>
@@ -147,12 +148,13 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -162,13 +164,13 @@ export const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 rounded-lg mt-2 shadow-lg border border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-lg mt-2 shadow-lg border border-gray-200/20 dark:border-slate-700/20">
               {navbarContent.navigation_items.map((item) => (
                 item.href.startsWith('#') ? (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -177,7 +179,7 @@ export const Navbar = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -189,7 +191,7 @@ export const Navbar = () => {
                   {isAdmin && (
                     <Link
                       to="/admin"
-                      className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                      className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       Admin Dashboard
@@ -200,7 +202,7 @@ export const Navbar = () => {
                       signOut();
                       setIsOpen(false);
                     }}
-                    className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                    className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
                   >
                     Sign Out
                   </button>
@@ -208,7 +210,7 @@ export const Navbar = () => {
               ) : (
                 <Link
                   to={navbarContent.cta_link}
-                  className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                  className="text-gray-700 dark:text-gray-200 hover:text-blue-400 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {navbarContent.cta_text}
