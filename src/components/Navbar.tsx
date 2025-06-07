@@ -50,10 +50,22 @@ export const Navbar = () => {
       .single();
 
     if (data) {
+      // Safely convert navigation_items from Json to NavItem[]
+      let navigationItems: NavItem[] = navbarContent.navigation_items;
+      
+      if (Array.isArray(data.navigation_items)) {
+        navigationItems = data.navigation_items
+          .filter((item: any) => item && typeof item === 'object' && item.label && item.href)
+          .map((item: any) => ({
+            label: String(item.label),
+            href: String(item.href)
+          }));
+      }
+
       setNavbarContent({
         logo_text: data.logo_text || "CSED",
         logo_url: data.logo_url || "",
-        navigation_items: Array.isArray(data.navigation_items) ? data.navigation_items as NavItem[] : navbarContent.navigation_items,
+        navigation_items: navigationItems,
         cta_text: data.cta_text || "Join Us",
         cta_link: data.cta_link || "/auth"
       });
